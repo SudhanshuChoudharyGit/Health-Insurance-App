@@ -1,6 +1,9 @@
 # Health-Insurance-App
 A python app based on flask for calculating Health Insurance premium using MongoDB for Database and React for frontend.
 
+![image](https://github.com/SudhanshuChoudharyGit/Health-Insurance-App/assets/130995829/285557bd-d3d1-4df3-a4c1-80659a33f89c)
+
+
 Node - Proxy server (server.js) file is used to deal with CORS policy (Would not be needed if frontend and backend are deployed on same domain)
 
 # APIs and URLs with Sample Input and Output
