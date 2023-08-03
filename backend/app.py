@@ -54,15 +54,19 @@ def query_data():
     premium = float(0)
 
     # Calculate individual premiums for each age provided in the request and accumulate the total premium.
-    for age in data['ages']:
-        member_premium = float(calculate_individual_premium(age, data['cover'], data['city'], data['tenure']))
+    if len(data['ages']) == 1:
+        age1 = data['ages'][0]
+        premium = float(calculate_individual_premium(age1, data['cover'], data['city'], data['tenure']))
+    else :
+        for age in data['ages']:
+            member_premium = float(calculate_individual_premium(age, data['cover'], data['city'], data['tenure']))
 
-        # Apply a discount of 50% to all member premiums except the oldest age in the list.
-        if age != max(data['ages']):
-            member_premium *= 0.5
+            # Apply a discount of 50% to all member premiums except the oldest age in the list.
+            if age != max(data['ages']):
+                member_premium *= 0.5
 
-        # Add the calculated premium to the total premium.
-        premium += member_premium
+            # Add the calculated premium to the total premium.
+            premium += member_premium
 
     # Return the total premium as a JSON response.
     return jsonify({'premium': premium})
