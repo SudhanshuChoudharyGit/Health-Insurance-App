@@ -3,7 +3,7 @@ import json
 
 # Replace the connection string with your MongoDB Atlas connection string
 # You can find the connection string in your MongoDB Atlas dashboard
-connection_string = "mongodb+srv://the1ofmillion:KOIg2wNiDufSP6oU@cluster0.2ql6f1e.mongodb.net/?retryWrites=true&w=majority"
+connection_string = "mongodb+srv://the1ofmillion:<pass>@cluster0.2ql6f1e.mongodb.net/?retryWrites=true&w=majority"
 
 # Replace 'database_name' with the name of your database and 'collection_name' with the name of your collection
 database_name = "insurance_data"
