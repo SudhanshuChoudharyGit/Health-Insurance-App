@@ -1,4 +1,4 @@
-/* form.css */
+
 
 /* Styles for the main container */
 .container {
@@ -9,13 +9,17 @@
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #f9f9f9;
+    background-color: rgba(249, 249, 249, 0.5);
   }
   
+  .formWrapper {
+    margin-right: 500px;
+  }
   /* Styles for the header */
   h1 {
     font-size: 24px;
-    margin-bottom: 20px;
-    color: #007bff;
+    margin-bottom: 100px;
+    color:#0056b3;
   }
   
   /* Styles for form elements */
@@ -57,18 +61,8 @@
     margin-bottom: 10px;
   }
   
-  /* Styles for the premium and add to cart section */
-  .premium-section {
-    margin-top: 20px;
-    border-top: 1px solid #ccc;
-    padding-top: 10px;
-  }
   
-  .premium-label {
-    font-weight: bold;
-  }
-  
-  /* Center the form */
+  /* Centering the form */
   body {
     display: flex;
     justify-content: center;
@@ -77,18 +71,17 @@
     background-color: #f1f1f1;
   }
   
-  /* Modern styles for select dropdown */
+
   select {
     appearance: none;
     background-color: #fff;
-    background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
     background-repeat: no-repeat;
     background-position: right 8px center;
     background-size: 18px;
     padding-right: 30px;
   }
   
-  /* Modern styles for buttons */
+
   button {
     font-size: 14px;
     text-transform: uppercase;
@@ -98,5 +91,21 @@
   
   button:hover {
     background-color: #0056b3;
+  }
+
+  .premium-section {
+    margin-top: 20px;
+    font-weight: bold;
+    padding: 20px;
+    border: 1px solid #007bff; 
+    border-radius: 5px; 
+    background-color: #f9f9f9; 
+    display: flex;
+    justify-content: space-between; /* Align the elements horizontally with space between them */
+    align-items: center; /* Align the elements vertically at the center */
+  }
+  
+  .premium-label {
+    font-weight: bold;
   }
   

@@ -1,27 +1,26 @@
 from flask import Flask, request, jsonify
 import pymongo
-from flask_cors import CORS 
+from flask_cors import CORS
 
-# Create the Flask app
+# Creating the Flask app and enable Cross-Origin Resource Sharing (CORS)
 app = Flask(__name__)
 CORS(app)
 
-# Replace the connection string with your MongoDB Atlas connection string
-# You can find the connection string in your MongoDB Atlas dashboard
-connection_string = "mongodb+srv://the1ofmillion:KOIg2wNiDufSP6oU@cluster0.2ql6f1e.mongodb.net/?retryWrites=true&w=majority"
+# Connection string with MongoDB Atlas connection string
+connection_string = "mongodb+srv://the1ofmillion:<pass>@cluster0.2ql6f1e.mongodb.net/?retryWrites=true&w=majority"
 
-# Replace 'database_name' with the name of your database and 'collection_name' with the name of your collection
+
 database_name = "insurance_data"
 collection_name = "insurance_rates"
 
-# Function to perform the query and return the results as JSON
+# Function to calculate the individual premium based on age, cover, city, and tenure
 def calculate_individual_premium(age, cover, city, tenure):
-    print("this function got called!")
+    # Connection to the MongoDB using the provided connection string.
     client = pymongo.MongoClient(connection_string)
     db = client[database_name]
     collection = db[collection_name]
 
-        # Prepare the query filter to find the document with the specified criteria
+    # Query filter to find the document with the specified criteria.
     query_filter = {
         "Age": str(age),
         "SumInsured": str(cover),
@@ -29,10 +28,10 @@ def calculate_individual_premium(age, cover, city, tenure):
         "TierID": str(city)
     }
 
-    # Perform the query using find_one method with the query_filter
+    # Performs the query 
     query_result = collection.find_one(query_filter)
 
-    # If the document is found, return the "Rate" value
+    # If the document is found, extract the "Rate" value and return it as a floating-point number.
     if query_result:
         rate = float(query_result.get("Rate"))
         client.close()
@@ -41,31 +40,34 @@ def calculate_individual_premium(age, cover, city, tenure):
         client.close()
         return None
 
-# API endpoint for handling the query
+# API endpoint for handling the query to calculate premium
 @app.route('/api/calculate_premium', methods=['POST'])
 def query_data():
-    print("got the request")
-    data = request.get_json()  # Assuming the request contains the query filter in JSON format
+    # Retrieve the JSON data from the POST request containing ages, city, cover, and tenure.
+    data = request.get_json()
 
-    ages = data['ages']
-    city = data['city']
-    cover = data['cover']
-    tenure = data['tenure']
-
-    if not data:
+    # Ensure that the request contains valid data; otherwise, return an error response with 400 status code.
+    if not data or 'ages' not in data or 'city' not in data or 'cover' not in data or 'tenure' not in data:
         return jsonify({"error": "Invalid request"}), 400
-    
+
+    # Initialize the total premium variable.
     premium = float(0)
 
-    for age in ages:
-        member_premium = float(calculate_individual_premium(age, cover, city, tenure))
-        print("before dicount: "+str(float(member_premium)))
-        if age != max(ages):
+    # Calculate individual premiums for each age provided in the request and accumulate the total premium.
+    for age in data['ages']:
+        member_premium = float(calculate_individual_premium(age, data['cover'], data['city'], data['tenure']))
+
+        # Apply a discount of 50% to all member premiums except the oldest age in the list.
+        if age != max(data['ages']):
             member_premium *= 0.5
-        print("after dicount: "+str(float(member_premium)))
+
+        # Add the calculated premium to the total premium.
         premium += member_premium
 
+    # Return the total premium as a JSON response.
     return jsonify({'premium': premium})
 
+# Main entry point of the application
 if __name__ == '__main__':
-    app.run(debug=True)  # Run the Flask app in debug mode
+    # Run the Flask app on the default host and port.
+    app.run()

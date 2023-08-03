@@ -13,9 +13,9 @@
         "react-scripts": "4.0.3"
     },
     "scripts": {
-        "start": "react-scripts --openssl-legacy-provider start",
+        "start": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
         "start-proxy": "node server.js",
-        "build": "react-scripts build",
+        "build": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
