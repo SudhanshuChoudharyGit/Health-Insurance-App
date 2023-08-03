@@ -59,29 +59,29 @@ Node - Proxy server (server.js) file is used to deal with CORS policy (Would not
 1. Clone the  Repository:
 
   ```
-    git clone <repository-url>
-    cd <directory>
+    git clone https://github.com/SudhanshuChoudharyGit/Health-Insurance-App.git
+    cd Health-Insurance-App
   ```
-2. Install Dependencies for frontend:
+2. Go to frontend folder and install Dependencies for frontend:
   ```
     cd frontend
     npm install
   ```
-2. Install Dependencies for backend:
+2. Go to backend folder and install Dependencies for backend:
   ```
     cd backend
     pip3 install -r requirements.txt
   ```
-3. Setup MongoDB Atlas:
+3. Go to `backend->app.py` file to Setup MongoDB Atlas:
 - Replace `<pass>` in `connection_string` in `app.js` with the MongoDB Atlas password.
 
-4. Start the Backend Server:
+4. Open a new terminal and start the Backend Server:
   ```
     cd backend
     python3 app.py
   ```
 
-6. Provide the backend server URL in place of Original URL of your backend server in server.js file
+6. Go to `frontend -> server.js`, provide the backend server URL in place of Original URL of your backend server in server.js file
   ```
 app.use(
   '/api', 
@@ -96,12 +96,12 @@ app.use(
 );
 ```
 
-8.  Start the proxy Server:
+8.  Open a new terminal start the proxy Server:
   ```
     cd frontend
     node server.js
   ```
-8. Start the frontend React app:
+8. Open the final terminal and start the frontend React app:
   ```
     cd frontend
     npm start
