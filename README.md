@@ -73,7 +73,7 @@ Node - Proxy server (server.js) file is used to deal with CORS policy (Would not
     pip3 install -r requirements.txt
   ```
 3. Go to `backend->app.py` file to Setup MongoDB Atlas:
-- Replace `<pass>` in `connection_string` in `app.js` with the MongoDB Atlas password.
+- Replace `<pass>` in `connection_string` in `app.py` with the MongoDB Atlas password.
 
 4. Open a new terminal and start the Backend Server:
   ```
